@@ -32,6 +32,7 @@
 									<th>ID Casis</th>
 									<th>Nama</th>
 									<th>Tetala</th>
+									<th>Alamat</th>
 									<th>Sekolah Asal</th>
 									<th>Aksi</th>
 								</tr>
@@ -43,6 +44,7 @@
 										<td><?php echo $value->id_casis ?></td>
 										<td><?php echo $value->nama_casis ?></td>
 										<td><?php echo $value->tempat.','.' '.$value->tanggal_lahir ?></td>
+										<td><?php echo $value->desa ?>, <?php echo $value->kecamatan ?>, <?php echo $value->kabupaten ?></td>
 										<td><?php echo $value->asal_sekolah ?></td>
 										<td>
 											<a href="<?php echo base_url('admin/rekap/').$value->id_casis ?>" class="btn btn-primary">Detail</a>
