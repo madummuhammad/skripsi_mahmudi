@@ -16,8 +16,8 @@
           <div class="card">
             <div class="card-body">
               <div class="row row-berita">
-                <div class="col-sm-10 grid-margin">
-                  <div class="mb-0 isi">
+                <div class="col-sm-12 grid-margin">
+                  <div class="mb-0">
                     <?php echo $berita['isi'] ?>
                   </div>
                 </div>

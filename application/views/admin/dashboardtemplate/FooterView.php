@@ -6,8 +6,10 @@
 <!-- ============================================================== -->
 <?php if($this->uri->segment(3)!=='cetak'): ?>
 	<?php if ($this->uri->segment(1)!=='pengumuman'):?>
-		<footer class="footer text-center"> 2023 © Mahmudi
-		</footer>
+		<?php if ($this->uri->segment(4)!=='cetak'):?>
+			<footer class="footer text-center"> 2023 © Mahmudi
+			</footer>
+		<?php endif ?>
 	<?php endif ?>
 <?php endif ?>
 <!-- ============================================================== -->

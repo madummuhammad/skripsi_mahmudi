@@ -29,7 +29,17 @@ class CasisModel extends CI_Model {
 	public function detail($field,$id)
 	{
 		$this->db->where($field,$id);
-		return $this->db->get($this->table)->row_array();
+		$casis=$this->db->get($this->table)->row_array();
+
+		$this->db->where('id_casis',$casis['id_casis']);
+		$pendaftaran=$this->db->get('pendaftaran')->row_array();
+		$casis['pendaftaran']=$pendaftaran;
+
+		$this->db->where('id_casis',$casis['id_casis']);
+		$nilai=$this->db->get('nilai')->row_array();
+		$casis['nilai']=$nilai;
+
+		return $casis;
 	}
 
 	public function update($data,$id)

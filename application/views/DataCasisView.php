@@ -90,6 +90,7 @@
 								} ?> value="">Pilih</option>
 								<option value="Laki-laki" <?php if($casis['jenis_kelamin']=='Laki-laki'){echo 'selected';} ?>>Laki-laki</option>
 								<option value="Perempuan" <?php if($casis['jenis_kelamin']=='Perempuan'){echo 'selected';} ?>>Perempuan</option>
+								<option value="Tidak Memilih" <?php if($casis['jenis_kelamin']=='Tidak Memilih'){echo 'selected';} ?>>Perempuan</option>
 							</select>
 							<div class="invalid-feedback">
 								<?php echo form_error('jenis_kelamin') ?>

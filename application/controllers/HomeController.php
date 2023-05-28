@@ -50,4 +50,10 @@ class HomeController extends CI_Controller {
 		$data['profile']=$this->ProfilSekolahModel->first();
 		$this->load->view('home/ProfileView',$data);
 	}
+
+	public function galeri()
+	{
+		$data['berita']=$this->BeritaModel->get();
+		$this->load->view('home/GaleriView',$data);
+	}
 }

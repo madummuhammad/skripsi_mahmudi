@@ -8,6 +8,7 @@ class HasilSeleksiController extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('admin_helper');
 		$this->load->model('PendaftaranModel');
+		$this->load->model('CasisModel');
 		$this->load->model('BerkasDiterimaModel');
 		$this->load->model('SeleksiModel');
 		$this->load->model('NilaiDiterimaModel');
@@ -29,6 +30,15 @@ class HasilSeleksiController extends CI_Controller {
 		$data['seleksi']=$this->SeleksiModel->get_all();
 		$data['status']=$this->NilaiDiterimaModel->status();
 		$this->load->view('admin/HasilSeleksiCetakView',$data);
+	}
+
+	public function detail_cetak()
+	{
+		$id_casis=$this->uri->segment(5);
+		$data['casis']=$this->CasisModel->detail('id_casis',$id_casis);
+
+		// var_dump($data['casis']);
+		$this->load->view('admin/HasilSeleksiDetailCetak',$data);
 	}
 
 	public function update()

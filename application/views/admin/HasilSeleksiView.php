@@ -29,6 +29,7 @@
 									<th>Nilai Rata-rata</th>
 									<th>Berkas</th>
 									<th>Status</th>
+									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -42,49 +43,16 @@
 											<td><?php echo $value->rerata_nilai ?></td>
 											<td>Lengkap</td>
 											<td><?php echo $value->kelas ?></td>
-										</tr>
-									<?php endif ?>
-								<?php endforeach ?>
-								<?php foreach ($seleksi['reguler'] as $key => $value): ?>
-									<?php if($key<=4): ?>
-										<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
-										<tr>
-											<td><?php echo $value->id_pendaftaran ?></td>
-											<td><?php echo $value->casis['nama_casis'] ?></td>
-											<td><?php echo $value->casis['asal_sekolah'] ?></td>
-											<td><?php echo $value->rerata_nilai ?></td>
-											<td>Lengkap</td>
-											<td><?php echo $value->kelas ?></td>
-										</tr>
-									<?php endif ?>
-								<?php endforeach ?>
-								<?php foreach ($seleksi['tidak_diterima1'] as $key => $value): ?>
-									<?php if($key<=4): ?>
-										<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
-										<tr>
-											<td><?php echo $value->id_pendaftaran ?></td>
-											<td><?php echo $value->casis['nama_casis'] ?></td>
-											<td><?php echo $value->casis['asal_sekolah'] ?></td>
-											<td><?php echo $value->rerata_nilai ?></td>
-											<td>Lengkap</td>
-											<td>Tidak Diterima</td>
-										</tr>
-									<?php endif ?>
-								<?php endforeach ?>
-								<?php foreach ($seleksi['tidak_diterima2'] as $key => $value): ?>
-									<?php if($key>4): ?>
-										<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
-										<tr>
-											<td><?php echo $value->id_pendaftaran ?></td>
-											<td><?php echo $value->casis['nama_casis'] ?></td>
-											<td><?php echo $value->casis['asal_sekolah'] ?></td>
-											<td><?php echo $value->rerata_nilai ?></td>
-											<td>Lengkap</td>
-											<td>Tidak Diterima</td>
-										</tr>
-									<?php endif ?>
-								<?php endforeach ?>
-								<?php foreach ($seleksi['tidak_diterima3'] as $key => $value): ?>
+											<td>
+												<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+												<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas='.$value->kelas ?>" class="btn btn-primary">Cetak</a>
+											<?php endif ?>
+										</td>
+									</tr>
+								<?php endif ?>
+							<?php endforeach ?>
+							<?php foreach ($seleksi['reguler'] as $key => $value): ?>
+								<?php if($key<=4): ?>
 									<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
 									<tr>
 										<td><?php echo $value->id_pendaftaran ?></td>
@@ -92,43 +60,107 @@
 										<td><?php echo $value->casis['asal_sekolah'] ?></td>
 										<td><?php echo $value->rerata_nilai ?></td>
 										<td>Lengkap</td>
-										<td>Tidak Diterima</td>
-									</tr>
-								<?php endforeach ?>
-								<?php foreach ($seleksi['tidak_diterima4'] as $key => $value): ?>
-									<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
-									<tr>
-										<td><?php echo $value->id_pendaftaran ?></td>
-										<td><?php echo $value->casis['nama_casis'] ?></td>
-										<td><?php echo $value->casis['asal_sekolah'] ?></td>
-										<td><?php echo $value->rerata_nilai ?></td>
-										<td>Berkas Tidak Lengkap</td>
-										<td>Tidak Diterima</td>
-									</tr>
-								<?php endforeach ?>
-							</tbody>
-						</table>
-						<div class="form-group d-flex justify-content-end">
-							<!-- <a href="<?php echo base_url('admin/berita') ?>" class="btn btn-danger text-white me-2">KEMBALI</a> -->
-							<!-- <button type="button" class="btn btn-primary">Kembali</button> -->
-							<?php if($this->session->userdata('admin')['hak_akses']=='Kesiswaan'): ?>
-								<?php if(count($seleksi['unggulan'])>0 OR count($seleksi['reguler'])>0): ?>
-								<?php if($status==false): ?>
-									<button type="submit" class="btn btn-primary">SETUJUI LAPORAN</button>
-								<?php endif ?>
+										<td><?php echo $value->kelas ?></td>
+										<td>
+											<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+											<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas='.$value->kelas ?>" class="btn btn-primary">Cetak</a>
+										<?php endif ?>
+									</td>
+								</tr>
 							<?php endif ?>
+						<?php endforeach ?>
+						<?php foreach ($seleksi['tidak_diterima1'] as $key => $value): ?>
+							<?php if($key<=4): ?>
+								<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
+								<tr>
+									<td><?php echo $value->id_pendaftaran ?></td>
+									<td><?php echo $value->casis['nama_casis'] ?></td>
+									<td><?php echo $value->casis['asal_sekolah'] ?></td>
+									<td><?php echo $value->rerata_nilai ?></td>
+									<td>Lengkap</td>
+									<td>Tidak Diterima</td>
+									<td>
+										<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+										<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas=Tidak Diterima' ?>" class="btn btn-primary">Cetak</a>
+									<?php endif ?>
+								</td>
+							</tr>
 						<?php endif ?>
-					</div>
-				</div>
-			</form>
-			<?php if(count($seleksi['unggulan'])>0 OR count($seleksi['reguler'])>0): ?>
-			<?php if($status==true): ?>
-				<p class="m-0 p-0 text-end">Bangkalan, <?php echo date('d/m/Y'); ?> </p>
-				<p class="m-0 p-0 text-end">Bag. Kesiswaan</p>
-				<p class="mt-5 text-end">Bahar, S.Pd</p>
-			<?php endif ?>
+					<?php endforeach ?>
+					<?php foreach ($seleksi['tidak_diterima2'] as $key => $value): ?>
+						<?php if($key>4): ?>
+							<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
+							<tr>
+								<td><?php echo $value->id_pendaftaran ?></td>
+								<td><?php echo $value->casis['nama_casis'] ?></td>
+								<td><?php echo $value->casis['asal_sekolah'] ?></td>
+								<td><?php echo $value->rerata_nilai ?></td>
+								<td>Lengkap</td>
+								<td>Tidak Diterima</td>
+								<td>
+									<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+									<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas=Tidak Diterima' ?>" class="btn btn-primary">Cetak</a>
+								<?php endif ?>
+							</td>
+
+						</tr>
+					<?php endif ?>
+				<?php endforeach ?>
+				<?php foreach ($seleksi['tidak_diterima3'] as $key => $value): ?>
+					<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
+					<tr>
+						<td><?php echo $value->id_pendaftaran ?></td>
+						<td><?php echo $value->casis['nama_casis'] ?></td>
+						<td><?php echo $value->casis['asal_sekolah'] ?></td>
+						<td><?php echo $value->rerata_nilai ?></td>
+						<td>Lengkap</td>
+						<td>Tidak Diterima</td>
+						<td>
+							<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+							<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas=Tidak Diterima' ?>" class="btn btn-primary">Cetak</a>
+						<?php endif ?>
+					</td>
+				</tr>
+			<?php endforeach ?>
+			<?php foreach ($seleksi['tidak_diterima4'] as $key => $value): ?>
+				<input type="text" name="id_pendaftaran<?php echo $value->id_pendaftaran ?>" hidden>
+				<tr>
+					<td><?php echo $value->id_pendaftaran ?></td>
+					<td><?php echo $value->casis['nama_casis'] ?></td>
+					<td><?php echo $value->casis['asal_sekolah'] ?></td>
+					<td><?php echo $value->rerata_nilai ?></td>
+					<td>Berkas Tidak Lengkap</td>
+					<td>Tidak Diterima</td>
+					<td>
+						<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
+						<a target="_blank" href="<?php echo base_url('admin/hasil_seleksi/detail/cetak/').$value->casis['id_casis'].'?kelas=Tidak Diterima' ?>" class="btn btn-primary">Cetak</a>
+					<?php endif ?>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
+<div class="form-group d-flex justify-content-end">
+	<!-- <a href="<?php echo base_url('admin/berita') ?>" class="btn btn-danger text-white me-2">KEMBALI</a> -->
+	<!-- <button type="button" class="btn btn-primary">Kembali</button> -->
+	<?php if($this->session->userdata('admin')['hak_akses']=='Kesiswaan'): ?>
+		<?php if(count($seleksi['unggulan'])>0 OR count($seleksi['reguler'])>0): ?>
+		<?php if($status==false): ?>
+			<button type="submit" class="btn btn-primary">SETUJUI LAPORAN</button>
 		<?php endif ?>
-	</div>
+	<?php endif ?>
+<?php endif ?>
+</div>
+</div>
+</form>
+<?php if(count($seleksi['unggulan'])>0 OR count($seleksi['reguler'])>0): ?>
+<?php if($status==true): ?>
+	<p class="m-0 p-0 text-end">Bangkalan, <?php echo date('d/m/Y'); ?> </p>
+	<p class="m-0 p-0 text-end">Bag. Kesiswaan</p>
+	<p class="mt-5 text-end">Bahar, S.Pd</p>
+<?php endif ?>
+<?php endif ?>
+</div>
 </div>
 </div>
 </div>

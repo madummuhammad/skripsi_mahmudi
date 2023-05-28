@@ -75,6 +75,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('pengumuman') ?>">Pengumuman</a>
                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('galeri') ?>">Galeri</a>
+                  </li>
                 </ul>
               </div>
             </div>

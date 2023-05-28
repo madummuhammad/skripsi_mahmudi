@@ -138,6 +138,7 @@ $route['admin/buat_laporan/load']='LaporanController/create';
 // Hasil seleksi
 $route['admin/hasil_seleksi']='HasilSeleksiController/index';
 $route['admin/hasil_seleksi/cetak']='HasilSeleksiController/cetak';
+$route['admin/hasil_seleksi/detail/cetak/:num']='HasilSeleksiController/detail_cetak';
 $route['admin/hasil_seleksi/load']='HasilSeleksiController/update';
 $route['admin/rekap']='CasisController/rekap';
 $route['admin/rekap/:num']='CasisController/rekap_detail';
@@ -149,5 +150,6 @@ $route['berita']='HomeController/berita';
 $route['pengumuman']='HomeController/pengumuman';
 $route['pengumuman/cetak']='HomeController/cetak';
 $route['profile']='HomeController/profile';
+$route['galeri']='HomeController/galeri';
 
 $route['berita/detail/:num']='HomeController/berita_detail';
