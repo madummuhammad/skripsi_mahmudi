@@ -1,0 +1,11 @@
+.login .logo{
+	width: 150px;
+}
+
+.bg-primary{
+	background-color: #23462E !important;
+}
+
+.user-bg .overlay-box .user-content .thumb-lg {
+    border-radius: 0% !important;
+}
