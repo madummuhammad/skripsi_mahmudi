@@ -227,6 +227,7 @@ class CasisController extends CI_Controller {
 		$data=[
 			'nik'=>NULL,
 			'kabupaten'=>NULL,
+			'gambar'=>NULL,
 			'kecamatan'=>NULL,
 			'desa'=>NULL,
 			'agama'=>NULL,
@@ -438,9 +439,11 @@ class CasisController extends CI_Controller {
 
 	public function bukti()
 	{
+		$this->load->model("LogModel");
 		$id_pendaftaran=$this->uri->segment(4);
 		$data['pendaftaran']=$this->PendaftaranModel->where('id_pendaftaran',$id_pendaftaran);
 		$data['casis']=$this->CasisModel->row_array('id_casis',$data['pendaftaran']['id_casis']);
+		$data['log']=$this->LogModel->last_login();
 		$this->load->view('BuktiView',$data);
 		// return redirect('casis/pendaftaran');
 	}

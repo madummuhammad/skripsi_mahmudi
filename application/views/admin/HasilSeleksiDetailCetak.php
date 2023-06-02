@@ -16,7 +16,6 @@
 			<img class="img-fluid" src="<?php echo base_url('assets/images/logo.png') ?>" alt="">
 		</div>
 		<div class="col-10">
-			<h4 class="text-start fw-bold">PENERIMAAN SISWA BARU</h4 >
 			<h4 class="text-start fw-bold">MTs BUSTANUL ARIFIN TRAMOK KOKOP BANGKALAN</h4 >
 			<h4 class="text-start fw-bold m-0">Tahun Ajaran 2023-2024</h4 >
 		</div>

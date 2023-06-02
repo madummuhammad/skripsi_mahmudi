@@ -5,6 +5,13 @@
 		<!-- Sidebar navigation-->
 		<nav class="sidebar-nav">
 			<ul id="sidebarnav">
+					<li class="sidebar-item">
+										<a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('admin/dashboard') ?>"
+							aria-expanded="false">
+							<i class="far fa-clock" aria-hidden="true"></i>
+							<span class="hide-menu">HALAMAN UTAMA</span>
+						</a>
+						</li>
 				<?php if($this->session->userdata('admin')['hak_akses']=='Admin' OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'): ?>
 				<li class="sidebar-item pt-2">
 					<p class="ms-3 fs-4 p-1 mb-0 mt-0 waves-effect waves-dark text-muted">

@@ -98,6 +98,8 @@ $route['admin/login']='PageController/admin_login';
 $route['admin/logout']='AdminController/logout';
 $route['load/admin/login']='AdminController/login';
 
+$route['admin/dashboard']='AdminController/dashboard';
+
 // Admin user
 $route['admin/user']='AdminController/list_user';
 $route['admin']='AdminController/list_user';

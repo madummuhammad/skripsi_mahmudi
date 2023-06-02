@@ -7,7 +7,9 @@ class AdminController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('AdminModel');
+		$this->load->model('LogModel');
 		$this->load->helper('admin_helper');
+				$this->load->model('ProfilSekolahModel');
 	}
 
 	public function login()
@@ -25,16 +27,13 @@ class AdminController extends CI_Controller {
 				$this->db->where('username',$username);
 				$data['admin']=$this->db->get('admin')->row_array();
 				$data['is_admin_login']=true;
+				$this->LogModel->create([
+					'login_at'=>date('Y-m-d H:i:s'),
+					'id_admin'=>$data['admin']['id'],
+					'hak_akses'=>$data['admin']['hak_akses']
+				]);
 				$this->session->set_userdata($data);
-				if($this->session->userdata('admin')['hak_akses']=='Kesiswaan' OR $this->session->userdata('admin')['hak_akses']=='Kepala Madrasah'  OR $this->session->userdata('admin')['hak_akses']=='Panitia PSB'){
-					if($this->session->userdata('admin')['hak_akses']=='Panitia PSB'){
-						return redirect('/admin/seleksi');
-					} else{
-						return redirect('/admin/hasil_seleksi');
-					}
-				} else {
-					return redirect('/admin/user');
-				}
+				return redirect('admin/dashboard');
 			} else {
 				$this->session->set_flashdata('login_status',TRUE);
 				$this->load->view('admin/LoginAdminView');
@@ -49,6 +48,11 @@ class AdminController extends CI_Controller {
 		$this->load->view('admin/UserView',$data);
 	}
 
+	public function dashboard()
+{
+			$data['profile']=$this->ProfilSekolahModel->first();
+		$this->load->view('admin/DashboardView',$data);
+}
 	public function add_user()
 	{
 		is_admin_login();
@@ -78,6 +82,9 @@ class AdminController extends CI_Controller {
 				'hak_akses'=>$hak_akses
 			];
 			$this->AdminModel->create($data);
+			if($hak_akses=='Panitia PSB'){
+				$this->AdminModel->create_panitia(['nama_panitia'=>$nama]);
+			}
 			return redirect('admin/user');
 		}
 		
@@ -109,7 +116,7 @@ class AdminController extends CI_Controller {
 		$password=$this->input->post('password');
 		$hak_akses=$this->input->post('hak_akses');
 
-		$this->form_validation->set_rules('username','Username','required|is_unique[admin.username]');
+		$this->form_validation->set_rules('username','Username','required');
 		$this->form_validation->set_rules('nama','Nama','required');
 		$this->form_validation->set_rules('password','Password','required');
 		$this->form_validation->set_rules('hak_akses','Hak Akses','required');

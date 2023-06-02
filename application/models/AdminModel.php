@@ -20,6 +20,10 @@ class AdminModel extends CI_Model {
 		$this->db->insert($this->table,$data);
 	}
 
+	public function create_panitia($data){
+		$this->db->insert('panitia_psb',$data);
+	}
+
 	public function delete($id)
 	{
 		$this->db->where($this->primary_key,$id);
