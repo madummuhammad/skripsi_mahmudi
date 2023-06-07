@@ -74,13 +74,13 @@
 				</p>
 				<a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('admin/hasil_seleksi') ?>"
 					aria-expanded="false">
-					<i class="far fa-clock" aria-hidden="true"></i>
-					<span class="hide-menu">HASIL SELEKSI</span>
+					
+					<span class="hide-menu">REKAPITULASI HASIL SELEKSI</span>
 				</a>
 				<a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('admin/rekap') ?>"
 					aria-expanded="false">
-					<i class="far fa-clock" aria-hidden="true"></i>
-					<span class="hide-menu">REKAP PENDAFTAR</span>
+					
+					<span class="hide-menu">REKAPITULASI PENDAFTAR</span>
 				</a>
 			</li>
 		</ul>

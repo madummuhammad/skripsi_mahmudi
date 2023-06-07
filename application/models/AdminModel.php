@@ -32,7 +32,7 @@ class AdminModel extends CI_Model {
 
 	public function update($data,$id,$username)
 	{
-		$this->db->where('username',$username);
+		// $this->db->where('username',$username);
 		$this->db->where($this->primary_key,$id);
 		$this->db->update($this->table,$data);
 	}

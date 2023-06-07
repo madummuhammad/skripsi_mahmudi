@@ -5,7 +5,7 @@
 	<div class="page-breadcrumb bg-white">
 		<div class="row align-items-center">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<h4 class="page-title text-center">LAPORAN HASIL SELEKSI</h4>
+				<h4 class="page-title text-center">LAPORAN REKAPITULASI HASIL SELEKSI</h4>
 			</div>
 		</div>
 	</div>

@@ -21,6 +21,7 @@
 		<div class="page-breadcrumb bg-white">
 			<div class="row align-items-center">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h4 class="page-title text-center">SEJARAH</h4>
 					<p><?php echo $profile['sejarah'] ?></p>
 				</div>
 			</div>

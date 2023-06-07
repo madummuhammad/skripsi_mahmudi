@@ -9,7 +9,7 @@ class AdminController extends CI_Controller {
 		$this->load->model('AdminModel');
 		$this->load->model('LogModel');
 		$this->load->helper('admin_helper');
-				$this->load->model('ProfilSekolahModel');
+		$this->load->model('ProfilSekolahModel');
 	}
 
 	public function login()
@@ -49,10 +49,10 @@ class AdminController extends CI_Controller {
 	}
 
 	public function dashboard()
-{
-			$data['profile']=$this->ProfilSekolahModel->first();
+	{
+		$data['profile']=$this->ProfilSekolahModel->first();
 		$this->load->view('admin/DashboardView',$data);
-}
+	}
 	public function add_user()
 	{
 		is_admin_login();
@@ -107,35 +107,57 @@ class AdminController extends CI_Controller {
 		$this->load->view('admin/EditUserView',$data);
 	}
 
+	function is_username_duplicate($username) {
+		$existingAdmins = $this->AdminModel->get();
+		foreach ($existingAdmins as $admin) {
+			if ($admin->username == $username) {
+				return true; 
+			}
+		}
+		return false;
+	}
+
 	public function edit()
 	{
 		is_admin_login();
-		$id=$this->input->post('id');
-		$nama=$this->input->post('nama');
-		$username=$this->input->post('username');
-		$password=$this->input->post('password');
-		$hak_akses=$this->input->post('hak_akses');
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$hak_akses = $this->input->post('hak_akses');
 
-		$this->form_validation->set_rules('username','Username','required');
-		$this->form_validation->set_rules('nama','Nama','required');
-		$this->form_validation->set_rules('password','Password','required');
-		$this->form_validation->set_rules('hak_akses','Hak Akses','required');
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('hak_akses', 'Hak Akses', 'required');
 
-		if($this->form_validation->run()==FALSE){
-			$data['id']=$id;
-			$data['admin']=$this->AdminModel->first($id);
-			$this->load->view('admin/EditUserView',$data);
-		} else {			
-			$data=[
-				'nama'=>$nama,
-				'username'=>$username,
-				'password'=>$password,
-				'hak_akses'=>$hak_akses
+		if ($this->form_validation->run() == FALSE) {
+			$data['id'] = $id;
+			$data['admin'] = $this->AdminModel->first($id);
+			$this->load->view('admin/EditUserView', $data);
+		} else {
+			$admin = $this->AdminModel->first($id);
+
+			if ($password == "") {
+				$password = $admin['password'];
+			}
+
+			if ($username != $admin['username'] && $this->is_username_duplicate($username)) {
+				$this->session->set_flashdata('errorUsername','Username sudah digunakan oleh user lain');
+				redirect('admin/user/edit/'.$admin['id']);
+			}
+
+			$data = [
+				'nama' => $nama,
+				'username' => $username,
+				'password' => $password,
+				'hak_akses' => $hak_akses
 			];
-			$this->AdminModel->update($data,$id,$username);
-			return redirect('admin/user');
+			$this->AdminModel->update($data, $id, $username);
+			redirect('admin/user');
 		}
 	}
+
+
 
 	public function logout()
 	{

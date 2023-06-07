@@ -27,9 +27,10 @@
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-3 col-form-label">Username</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control  <?php if(form_error('username')){echo 'is-invalid';} ?>" id="inputPassword" name="username"  value="<?php echo $admin['username'] ?>">
+							<input type="text" class="form-control <?php if(form_error('username')){echo 'is-invalid';} ?> <?php if($this->session->flashdata('errorUsername')){echo 'is-invalid';} ?>" id="inputPassword" name="username"  value="<?php echo $admin['username'] ?>">
 							<div class="invalid-feedback">
 								<?php echo form_error('username') ?>
+								<?php echo $this->session->flashdata('errorUsername') ?>
 							</div>
 						</div>
 					</div>

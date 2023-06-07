@@ -90,7 +90,7 @@
 								} ?> value="">Pilih</option>
 								<option value="Laki-laki" <?php if($casis['jenis_kelamin']=='Laki-laki'){echo 'selected';} ?>>Laki-laki</option>
 								<option value="Perempuan" <?php if($casis['jenis_kelamin']=='Perempuan'){echo 'selected';} ?>>Perempuan</option>
-								<option value="Tidak Memilih" <?php if($casis['jenis_kelamin']=='Tidak Memilih'){echo 'selected';} ?>>Perempuan</option>
+								<option value="Tidak Memilih" <?php if($casis['jenis_kelamin']=='Tidak Memilih'){echo 'selected';} ?>>Tidak Memilih</option>
 							</select>
 							<div class="invalid-feedback">
 								<?php echo form_error('jenis_kelamin') ?>
@@ -104,7 +104,7 @@
 								<option <?php if ($casis['agama']!=='Laki-laki' OR $casis['agama'] !=='Perempuan') {
 									echo "selected";
 								} ?> value="">Pilih</option>
-								<option value="Laki-laki" <?php if($casis['agama']=='Laki-laki'){echo 'selected';} ?>>Islam</option>
+								<option value="Islam" <?php if($casis['agama']=='Islam'){echo 'selected';} ?>>Islam</option>
 								<option value="Kristen" <?php if($casis['agama']=='Kristen'){echo 'selected';} ?>>Kristen</option>
 								<option value="Katholik" <?php if($casis['agama']=='Katholik'){echo 'selected';} ?>>Katholik</option>
 								<option value="Konghucu" <?php if($casis['agama']=='Konghucu'){echo 'selected';} ?>>Konghucu</option>

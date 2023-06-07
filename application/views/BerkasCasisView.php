@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="form-group d-flex justify-content-end">
-							<a href="<?php echo base_url('casis/berkas/clear') ?>" class="btn btn-danger text-white me-2">KEMBALI</a>
+							<a href="<?php echo base_url('casis/berkas/clear') ?>" class="btn btn-danger text-white me-2">BATAL</a>
 							<button type="submit" class="btn btn-primary">SIMPAN</button>
 						</div>
 					</form>
