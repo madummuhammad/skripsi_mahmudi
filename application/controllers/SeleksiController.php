@@ -45,10 +45,34 @@ class SeleksiController extends CI_Controller {
 					$this->SeleksiModel->create($data);
 					$this->PendaftaranModel->update(['status'=>1],$value->id_pendaftaran,$value->id_casis);
 				} else {
+					$data['id_pendaftaran']=$value->id_pendaftaran;
+					$data['nama_casis']=$value->casis['nama_casis'];
+					$config['proxy_ips'] = '';
 
+					$config['protocol'] = 'smtp';
+					$config['smtp_host'] = 'mail.smtp2go.com';
+					$config['smtp_port'] = '2525';
+					$config['smtp_user'] = 'mahmudi';
+					$config['smtp_pass'] = 'mahmudi';
+					$config['mailtype'] = 'html';
+					$config['charset'] = 'utf-8';
+					$config['newline'] = "\r\n";
+					$this->load->library('email');
+					$this->email->initialize($config);
+					$this->email->from('18230015@respati.ac.id', 'Pantia PSB');
+					$this->email->to($value->casis['email']);
+					$this->email->subject('Pengumuman');
+					$message = $this->load->view('admin/TemplateEmail', $data, TRUE);
+					$this->email->message($message);
+					$this->email->send();
+					// if ($this->email->send()) {
+					// 	echo 'Email berhasil dikirim.';
+					// } else {
+					// 	echo 'Gagal mengirim email: ' . $this->email->print_debugger();
+					// }
+					// return 1;
 				}
 			} else {
-				// var_dump($status);
 				if($status=='Tidak Lengkap'){
 					$this->PendaftaranModel->update(['status'=>1],$value->id_pendaftaran,$value->id_casis);
 					$this->BerkasDiterimaModel->delete('id_pendaftaran',$value->id_pendaftaran);

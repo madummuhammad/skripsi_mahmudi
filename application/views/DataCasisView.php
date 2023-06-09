@@ -57,7 +57,7 @@
 						<label for="inputPassword" class="col-sm-3 col-form-label">NIK</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control <?php if(form_error('nik')){echo 'is-invalid';} ?>" id="inputPassword" name="nik" value="<?php echo $casis['nik'] ?>">
-							<div class="invalid-feedback">
+							<div class="invalid-feedback nik">
 								<?php echo form_error('nik') ?>
 							</div>
 						</div>
@@ -291,4 +291,15 @@
 		};
 		reader.readAsDataURL(this.files[0]);
 	});
+
+	$('input[name="nik"]').on('keyup',function(){
+		var nik=$(this).val().length;
+		if(nik>16){
+			$(this).addClass('is-invalid');
+			$('.nik').html('Nik tidak boleh melebihi 16 karakter');
+		} else {
+			$('.nik').html('');
+			$(this).removeClass('is-invalid');
+		}
+	})
 </script>
